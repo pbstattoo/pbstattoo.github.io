@@ -3,19 +3,508 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PB'S TATTOO Studio</title>
+    <title>PB'S TATTOO — Precision Ink & Artistry</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background-color: #f4f4f4; }
-        .container { background: white; padding: 40px; border-radius: 10px; max-width: 600px; margin: auto; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); }
-        h1 { color: #333; }
-        p { color: #666; font-size: 18px; }
+        :root {
+            --bg: #000000;
+            --surface: #0e0e10;
+            --surface-hover: #16161a;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.2);
+            --text-primary: #ffffff;
+            --text-secondary: #86868b;
+            --text-muted: #53535a;
+            --accent: #ffffff;
+            --accent-glow: rgba(255, 255, 255, 0.15);
+            --wa-green: #25d366;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(0, 0, 0, 0.75);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+        }
+
+        .logo {
+            font-size: 1.05rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-btn {
+            background: #ffffff;
+            color: #000000 !important;
+            padding: 8px 18px;
+            border-radius: 980px;
+            font-size: 0.82rem !important;
+            font-weight: 600 !important;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 140px 24px 80px;
+            position: relative;
+        }
+
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 980px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+
+        .hero-pill span {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #25d366;
+            box-shadow: 0 0 8px #25d366;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 7vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            max-width: 900px;
+            margin-bottom: 20px;
+            background: linear-gradient(180deg, #ffffff 40%, #7c7c82 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: clamp(1.05rem, 2vw, 1.35rem);
+            color: var(--text-secondary);
+            max-width: 620px;
+            margin-bottom: 36px;
+            font-weight: 400;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: #ffffff;
+            color: #000000;
+            padding: 14px 30px;
+            border-radius: 980px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.06);
+            color: #ffffff;
+            border: 1px solid var(--border);
+            padding: 14px 28px;
+            border-radius: 980px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--border-hover);
+        }
+
+        /* Section Layout */
+        section {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 100px 24px;
+        }
+
+        .section-header {
+            margin-bottom: 54px;
+        }
+
+        .section-tag {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #ffffff;
+        }
+
+        /* Bento Grid */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+        }
+
+        .bento-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 36px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .bento-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            background: var(--surface-hover);
+        }
+
+        .col-4 { grid-column: span 4; }
+        .col-6 { grid-column: span 6; }
+        .col-8 { grid-column: span 8; }
+        .col-12 { grid-column: span 12; }
+
+        .card-number {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+            margin-bottom: 24px;
+        }
+
+        .card-title {
+            font-size: 1.45rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+
+        .card-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Studio Standards Grid */
+        .standards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .standard-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 28px;
+        }
+
+        .standard-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .standard-item p {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        /* Direct CTA Banner */
+        .cta-banner {
+            background: linear-gradient(180deg, #131316 0%, #08080a 100%);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 70px 36px;
+            text-align: center;
+            margin: 40px auto 100px;
+            max-width: 1120px;
+            position: relative;
+        }
+
+        .cta-banner h2 {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .cta-banner p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 540px;
+            margin: 0 auto 32px;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 40px 24px 60px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .footer-logo {
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.08em;
+        }
+
+        .footer-meta {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 860px) {
+            .col-4, .col-6, .col-8 {
+                grid-column: span 12;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to PB'S TATTOO</h1>
-        <p>Specializing in line work, realism, black and grey, dotwork, and blackwork outlines.</p>
-        <p><strong>Contact us on WhatsApp to book an appointment!</strong></p>
-    </div>
+
+    <!-- Frosted Navigation -->
+    <header>
+        <nav>
+            <a href="#" class="logo">PB'S TATTOO</a>
+            <div class="nav-links">
+                <a href="#styles">Styles</a>
+                <a href="#standards">Hygiene & Quality</a>
+                <a href="#contact" class="nav-btn">Book Consultation</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main>
+        <section class="hero">
+            <div class="hero-pill">
+                <span></span> Custom Appointments Open
+            </div>
+            <h1>Precision in Every Line.<br>Artistry on Skin.</h1>
+            <p>Every piece is custom tailored with clinical hygiene standards, precision needlework, and enduring craftsmanship.</p>
+            <div class="hero-actions">
+                <a href="https://wa.me/919999999999?text=Hello%20PB'S%20TATTOO,%20I%20would%20like%20to%20consult%20for%20a%20custom%20tattoo." class="btn-primary" target="_blank">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+                    </svg>
+                    Book via WhatsApp
+                </a>
+                <a href="#styles" class="btn-secondary">Explore Styles</a>
+            </div>
+        </section>
+
+        <!-- Bento Grid: Styles & Specialties -->
+        <section id="styles">
+            <div class="section-header">
+                <div class="section-tag">Techniques & Specialties</div>
+                <h2 class="section-title">Engineered with absolute precision.</h2>
+            </div>
+
+            <div class="bento-grid">
+                <!-- Large Card 1 -->
+                <div class="bento-card col-8">
+                    <div>
+                        <div class="card-number">01 / HYPER-DETAIL</div>
+                        <h3 class="card-title">Realism & Portraiture</h3>
+                        <p class="card-desc">Lifelike contrast, seamless grayscale gradients, and surgical needle depth for high-fidelity portraits and architectural realism.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bento-card col-4">
+                    <div>
+                        <div class="card-number">02 / MINIMALIST</div>
+                        <h3 class="card-title">Fine Line Work</h3>
+                        <p class="card-desc">Crisp, single-pass geometry and delicate typography designed to heal sharp.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bento-card col-4">
+                    <div>
+                        <div class="card-number">03 / SHADING</div>
+                        <h3 class="card-title">Dotwork & Stippling</h3>
+                        <p class="card-desc">Individual micro-dots layered strategically to build depth and tactile texture.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bento-card col-4">
+                    <div>
+                        <div class="card-number">04 / CLASSIC DEPTH</div>
+                        <h3 class="card-title">Black & Grey</h3>
+                        <p class="card-desc">Smooth washes ranging from pitch black to delicate light gray tones.</p>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="bento-card col-4">
+                    <div>
+                        <div class="card-number">05 / BOLD CONTRAST</div>
+                        <h3 class="card-title">Blackwork Outlines</h3>
+                        <p class="card-desc">Solid, saturated black outlines delivering maximum visual weight and longevity.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Studio Standards -->
+        <section id="standards">
+            <div class="section-header">
+                <div class="section-tag">Studio Standards</div>
+                <h2 class="section-title">Zero compromise on quality.</h2>
+            </div>
+
+            <div class="standards-grid">
+                <div class="standard-item">
+                    <h4>100% Sterile Protocol</h4>
+                    <p>Single-use cartridge needles, medical-grade barriers, and hospital-grade sterilization for every session.</p>
+                </div>
+                <div class="standard-item">
+                    <h4>Premium Inks</h4>
+                    <p>Strictly imported, vegan-certified carbon inks that retain deep richness over years of healing.</p>
+                </div>
+                <div class="standard-item">
+                    <h4>Custom Visual Stencils</h4>
+                    <p>Collaborative 1-on-1 design scaling to complement your exact muscle anatomy and body flow.</p>
+                </div>
+                <div class="standard-item">
+                    <h4>Structured Aftercare</h4>
+                    <p>Comprehensive healing guides and follow-up support to ensure your tattoo heals cleanly.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Booking Banner -->
+        <div id="contact" class="cta-banner">
+            <h2>Ready to bring your concept to life?</h2>
+            <p>Share your reference idea, placement, and size to discuss scheduling and get an upfront consultation.</p>
+            <a href="https://wa.me/919999999999?text=Hello%20PB'S%20TATTOO,%20I%20would%20like%20to%20discuss%20a%20design." class="btn-primary" target="_blank">
+                Start WhatsApp Conversation
+            </a>
+        </div>
+    </main>
+
+    <!-- Minimalist Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">PB'S TATTOO STUDIO</div>
+            <div class="footer-meta">© 2026 PB'S TATTOO. All rights reserved. Precision Custom Body Art.</div>
+        </div>
+    </footer>
+
 </body>
 </html>
