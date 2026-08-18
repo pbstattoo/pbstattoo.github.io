@@ -7,291 +7,84 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
     <style>
-        :root {
-            --bg: #000000;
-            --surface: #0e0e10;
-            --surface-hover: #16161a;
-            --border: rgba(255, 255, 255, 0.08);
-            --border-hover: rgba(255, 255, 255, 0.2);
-            --text-primary: #ffffff;
-            --text-secondary: #86868b;
-            --text-muted: #53535a;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text-primary);
-            overflow-x: hidden;
-            line-height: 1.5;
-        }
-
-        /* --- APPLE-STYLE ANIMATIONS --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .delay-1 { transition-delay: 0.1s; }
-        .delay-2 { transition-delay: 0.2s; }
-        .delay-3 { transition-delay: 0.3s; }
-
-        /* Navigation */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            background: rgba(0, 0, 0, 0.75);
-            border-bottom: 1px solid var(--border);
-        }
-
-        nav {
-            max-width: 1120px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 24px;
-        }
-
-        .logo { font-size: 1.05rem; font-weight: 800; letter-spacing: 0.1em; color: #fff; text-decoration: none; }
+        :root { --bg: #000000; --surface: #0e0e10; --border: rgba(255, 255, 255, 0.08); --text-primary: #ffffff; --text-secondary: #86868b; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+        body { background: var(--bg); color: var(--text-primary); line-height: 1.5; overflow-x: hidden; }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; }
+        
+        header { position: fixed; top: 0; width: 100%; z-index: 1000; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); background: rgba(0, 0, 0, 0.75); border-bottom: 1px solid var(--border); }
+        nav { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; }
+        .logo { display: flex; align-items: center; text-decoration: none; font-size: 1.05rem; font-weight: 800; letter-spacing: 0.1em; color: #fff; }
         .nav-links { display: flex; gap: 28px; align-items: center; }
         .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
         .nav-links a:hover { color: var(--text-primary); }
         .nav-btn { background: #fff; color: #000 !important; padding: 8px 18px; border-radius: 98px; font-weight: 600 !important; }
 
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 120px 24px 80px;
-        }
-
-        .hero h1 {
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 800;
-            line-height: 1.05;
-            letter-spacing: -0.03em;
-            margin-bottom: 20px;
-            background: linear-gradient(180deg, #ffffff 30%, #7c7c82 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: clamp(1.1rem, 2vw, 1.35rem);
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin-bottom: 40px;
-        }
-
-        .btn-primary {
-            background: #ffffff; color: #000000; padding: 16px 32px; border-radius: 98px;
-            font-weight: 600; text-decoration: none; display: inline-flex; gap: 10px;
-            transition: transform 0.3s ease;
-        }
+        .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 24px 80px; }
+        .hero h1 { font-size: clamp(3rem, 8vw, 6rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 20px; background: linear-gradient(180deg, #ffffff 30%, #7c7c82 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: clamp(1.1rem, 2vw, 1.35rem); color: var(--text-secondary); max-width: 600px; margin-bottom: 40px; }
+        .btn-primary { background: #ffffff; color: #000000; padding: 16px 32px; border-radius: 98px; font-weight: 600; text-decoration: none; display: inline-flex; transition: transform 0.3s ease; }
         .btn-primary:hover { transform: scale(1.05); }
 
-        /* Full Width Image Showcase */
-        .showcase {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .showcase-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin-bottom: 24px;
-        }
-
-        .img-card {
-            border-radius: 24px;
-            overflow: hidden;
-            position: relative;
-            aspect-ratio: 4/5;
-            background: var(--surface);
-        }
-
-        .img-card.wide {
-            grid-column: 1 / -1;
-            aspect-ratio: 21/9;
-        }
-
-        .img-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
-            filter: grayscale(80%) contrast(120%);
-        }
-
-        .img-card:hover img {
-            transform: scale(1.05);
-            filter: grayscale(0%) contrast(100%);
-        }
-
-        .img-label {
-            position: absolute;
-            bottom: 30px;
-            left: 30px;
-            color: #fff;
-            background: rgba(0,0,0,0.4);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 10px 20px;
-            border-radius: 98px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            letter-spacing: 0.05em;
-        }
-
-        /* Layout */
-        section { max-width: 1120px; margin: 0 auto; padding: 120px 24px; }
-        .section-header { margin-bottom: 60px; text-align: center; }
-        .section-tag { color: var(--text-muted); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px; }
-        .section-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; letter-spacing: -0.02em; }
-
-        /* Bento Grid */
-        .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
-        .bento-card { background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; transition: all 0.4s; }
-        .bento-card:hover { border-color: var(--border-hover); transform: translateY(-4px); }
-        .col-8 { grid-column: span 8; } .col-4 { grid-column: span 4; }
-        .card-number { font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-bottom: 24px; }
-        .card-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; }
-        .card-desc { color: var(--text-secondary); font-size: 1rem; }
-
-        @media (max-width: 860px) {
-            .col-8, .col-4 { grid-column: span 12; }
-            .showcase-grid { grid-template-columns: 1fr; }
-            .img-card.wide { aspect-ratio: 16/9; }
-            .nav-links { display: none; }
-        }
+        section { max-width: 1120px; margin: 0 auto; padding: 80px 24px; }
+        .standards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 40px; }
+        .standard-item { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 30px; }
+        .standard-item h4 { font-size: 1.2rem; margin-bottom: 10px; }
+        .standard-item p { color: var(--text-secondary); font-size: 0.9rem; }
+        @media (max-width: 860px) { .nav-links { display: none; } }
     </style>
 </head>
 <body>
-
     <header>
         <nav>
-            <a href="#" class="logo">PB'S TATTOO</a>
+            <a href="index.html" class="logo">
+                <!-- IF LOGO NOT UPLOADED YET, IT SHOWS TEXT -->
+                <img src="logo.png" alt="PB'S TATTOO" style="height: 35px; width: auto;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span style="display:none;">PB'S TATTOO</span>
+            </a>
             <div class="nav-links">
-                <a href="#gallery">Gallery</a>
-                <a href="#styles">Styles</a>
-                <a href="https://wa.me/919999999999" class="nav-btn" target="_blank">Book Now</a>
+                <a href="index.html" style="color: #fff;">Home</a>
+                <a href="gallery.html">Gallery & Styles</a>
+                <a href="contact.html" class="nav-btn">Contact</a>
             </div>
         </nav>
     </header>
 
-    <!-- Hero Section -->
     <main>
         <section class="hero">
             <h1 class="reveal">Skin is the canvas.<br>Needle is the brush.</h1>
-            <p class="reveal delay-1">Precision tattooing based in Goa. Focusing on realism, fine line, and blackwork.</p>
+            <p class="reveal delay-1">Precision custom tattooing. Zero compromise on quality, hygiene, and artistry.</p>
             <div class="reveal delay-2">
-                <a href="https://wa.me/919999999999" class="btn-primary" target="_blank">Book Consultation</a>
+                <a href="gallery.html" class="btn-primary">View Our Work</a>
             </div>
         </section>
 
-        <!-- Dynamic Image Gallery -->
-        <div id="gallery" class="showcase">
-            <div class="showcase-grid">
-                <!-- Image 1 -->
-                <div class="img-card reveal">
-                    <img src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?q=80&w=1200&auto=format&fit=crop" alt="Tattoo Model Back">
-                    <div class="img-label">Fine Line & Geometry</div>
+        <section class="reveal">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 10px;">Studio Standards</h2>
+            <p style="text-align: center; color: var(--text-secondary);">Clinical precision for every session.</p>
+            <div class="standards-grid">
+                <div class="standard-item">
+                    <h4>100% Sterile</h4>
+                    <p>Single-use cartridge needles and medical-grade sterilization.</p>
                 </div>
-                <!-- Image 2 -->
-                <div class="img-card reveal delay-1">
-                    <img src="https://images.unsplash.com/photo-1611501271400-3298a0d927dd?q=80&w=1200&auto=format&fit=crop" alt="Tattoo Model Arm">
-                    <div class="img-label">Black & Grey Realism</div>
+                <div class="standard-item">
+                    <h4>Premium Inks</h4>
+                    <p>Imported vegan-certified inks for longevity and richness.</p>
                 </div>
-                <!-- Wide Image 3 -->
-                <div class="img-card wide reveal">
-                    <img src="https://images.unsplash.com/photo-1590246814883-57832afa454d?q=80&w=2000&auto=format&fit=crop" alt="Tattoo Machine Detail">
-                    <div class="img-label">Clinical Precision</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bento Grid: Styles -->
-        <section id="styles">
-            <div class="section-header reveal">
-                <div class="section-tag">Specialties</div>
-                <h2 class="section-title">Mastered Techniques.</h2>
-            </div>
-
-            <div class="bento-grid">
-                <div class="bento-card col-8 reveal">
-                    <div class="card-number">01 / REALISM</div>
-                    <h3 class="card-title">Portraits & Architecture</h3>
-                    <p class="card-desc">High-contrast, flawless gradients pushing the boundary of lifelike art on skin.</p>
-                </div>
-                <div class="bento-card col-4 reveal delay-1">
-                    <div class="card-number">02 / MINIMAL</div>
-                    <h3 class="card-title">Fine Line</h3>
-                    <p class="card-desc">Surgical precision single-needle work that heals perfectly crisp.</p>
-                </div>
-                <div class="bento-card col-4 reveal">
-                    <div class="card-number">03 / BOLD</div>
-                    <h3 class="card-title">Blackwork</h3>
-                    <p class="card-desc">Heavy saturation and solid outlines for maximum visual impact.</p>
-                </div>
-                <div class="bento-card col-8 reveal delay-1">
-                    <div class="card-number">04 / TEXTURE</div>
-                    <h3 class="card-title">Dotwork & Stippling</h3>
-                    <p class="card-desc">Individual micro-dots layered strategically to build incredible depth, texture, and shading without heavy trauma to the skin.</p>
+                <div class="standard-item">
+                    <h4>Custom Design</h4>
+                    <p>1-on-1 collaborative scaling to fit your exact anatomy.</p>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer style="padding: 60px 24px; text-align: center; border-top: 1px solid var(--border);">
-        <p style="color: var(--text-muted); font-size: 0.9rem;">© 2026 PB'S TATTOO GOA. All rights reserved.</p>
-    </footer>
-
-    <!-- INTERSECTION OBSERVER JAVASCRIPT FOR ANIMATIONS -->
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.15
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        observer.unobserve(entry.target); // Only animate once
-                    }
-                });
-            }, observerOptions);
-
-            const revealElements = document.querySelectorAll('.reveal');
-            revealElements.forEach(el => observer.observe(el));
-        });
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }); });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
