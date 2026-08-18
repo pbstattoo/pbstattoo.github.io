@@ -14,7 +14,7 @@
         
         header { position: fixed; top: 0; width: 100%; z-index: 1000; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); background: rgba(0, 0, 0, 0.75); border-bottom: 1px solid var(--border); }
         nav { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; width: 100%; }
-        .logo { font-size: 1.05rem; font-weight: 800; letter-spacing: 0.1em; color: #fff; text-decoration: none; }
+        .logo { display: flex; align-items: center; text-decoration: none; font-size: 1.05rem; font-weight: 800; letter-spacing: 0.1em; color: #fff; }
         .nav-links { display: flex; gap: 28px; align-items: center; }
         .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; font-weight: 600; }
         .nav-links a:hover { color: var(--text-primary); }
@@ -38,7 +38,10 @@
 <body>
     <header>
         <nav>
-            <a href="index.html" class="logo">PB'S TATTOO</a>
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="PB'S TATTOO" style="height: 35px; width: auto;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span style="display:none;">PB'S TATTOO</span>
+            </a>
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="gallery.html">Gallery & Styles</a>
