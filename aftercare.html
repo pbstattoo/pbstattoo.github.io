@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aftercare - PB'S TATTOO</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root { --bg: #000000; --surface: #0e0e10; --border: rgba(255, 255, 255, 0.08); --surface-hover: #16161a; --text-primary: #ffffff; --text-secondary: #86868b; --accent: #2997ff; }
+        :root { --bg: #000000; --surface: #0e0e10; --border: rgba(255, 255, 255, 0.08); --text-primary: #ffffff; --text-secondary: #86868b; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
         body { background: var(--bg); color: var(--text-primary); padding-top: 100px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; overflow-x: hidden; }
         .reveal { opacity: 0; transform: translateY(40px); transition: all 1s; }
@@ -14,15 +16,14 @@
         .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; }
         
         header { position: fixed; top: 0; width: 100%; z-index: 1000; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); background: rgba(0, 0, 0, 0.75); border-bottom: 1px solid var(--border); }
-        nav { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; width: 100%; }
+        nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; width: 100%; position: relative; }
         .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; font-size: 1.05rem; font-weight: 800; letter-spacing: 0.1em; color: #fff; }
-        .nav-links { display: flex; gap: 28px; align-items: center; }
+        .nav-links { display: flex; gap: 24px; align-items: center; }
         .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: color 0.2s;}
         .nav-links a:hover { color: var(--text-primary); }
         .nav-btn { background: #fff; color: #000 !important; padding: 8px 18px; border-radius: 98px; }
 
         .container { max-width: 1000px; width: 100%; padding: 40px 24px; margin: 0 auto; }
-        
         .header-section { text-align: center; margin-bottom: 60px; }
         .header-section h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 15px; }
         .header-section p { color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
@@ -44,9 +45,12 @@
         .warning-list li { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 10px; display: flex; gap: 10px; align-items: flex-start; }
         .warning-list li::before { content: "✕"; color: #ff4545; font-weight: bold; }
 
-        @media (max-width: 860px) { 
-            .nav-links { display: none; } 
-            .col-6 { grid-column: span 12; } 
+        .menu-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.8rem; cursor: pointer; }
+        @media (max-width: 900px) { 
+            .menu-toggle { display: block; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: #0e0e10; flex-direction: column; padding: 20px 0; border-bottom: 1px solid var(--border); gap: 20px; z-index: 999;}
+            .nav-links.active { display: flex; }
+            .col-6, .col-12 { grid-column: span 12; }
             .bento-card { padding: 30px 20px; }
         }
     </style>
@@ -58,11 +62,12 @@
                 <img src="logo.png" alt="PB'S TATTOO Logo" style="height: 35px; width: auto;" onerror="this.style.display='none';">
                 <span>PB'S TATTOO</span>
             </a>
-           <div class="nav-links">
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="portfolio.html">Portfolio</a>
                 <a href="calculator.html">Pricing</a>
-                <a href="aftercare.html">Aftercare</a>
+                <a href="aftercare.html" style="color: #fff;">Aftercare</a>
                 <a href="blogs.html">Blogs</a>
                 <a href="timings.html">Timings</a>
                 <a href="contact.html">Contact</a>
@@ -78,36 +83,29 @@
         </div>
 
         <div class="bento-grid">
-            <!-- Step 1 -->
             <div class="bento-card col-12 reveal">
                 <div class="step-number">Phase 01 / The First 24 Hours</div>
                 <h3 class="card-title">Leave the wrap on, then wash gently.</h3>
-                <p class="card-desc">Keep the initial bandage or cling film on for 2 to 4 hours (or as instructed by your artist). Once removed, wash the tattoo immediately using warm water and a fragrance-free, antibacterial liquid soap. Use only your clean fingertips—no cloths or sponges. Pat dry gently with a clean paper towel.</p>
+                <p class="card-desc">Keep the initial bandage or cling film on for 2 to 4 hours. Wash immediately using warm water and fragrance-free, antibacterial liquid soap using only your clean fingertips. Pat dry gently.</p>
             </div>
-
-            <!-- Step 2 -->
             <div class="bento-card col-6 reveal delay-1">
                 <div class="step-number">Phase 02 / Days 2 to 3</div>
                 <h3 class="card-title">Keep it clean and dry.</h3>
-                <p class="card-desc">Wash the tattoo 2-3 times a day. During this phase, the tattoo may feel like a sunburn and leak small amounts of ink and plasma. This is completely normal. Allow the tattoo to dry fully after washing.</p>
+                <p class="card-desc">Wash the tattoo 2-3 times a day. It may feel like a sunburn and leak small amounts of ink and plasma. This is completely normal. Allow the tattoo to dry fully after washing.</p>
             </div>
-
-            <!-- Step 3 -->
             <div class="bento-card col-6 reveal delay-2">
                 <div class="step-number">Phase 03 / Days 4 to 14</div>
                 <h3 class="card-title">Moisturize sparingly.</h3>
-                <p class="card-desc">Once the tattoo starts feeling tight or begins to peel/flake, apply a very thin layer of fragrance-free lotion or tattoo-specific ointment 1-2 times a day. Do not over-moisturize; the skin needs to breathe to heal.</p>
+                <p class="card-desc">Once it starts feeling tight or begins to peel, apply a very thin layer of fragrance-free lotion 1-2 times a day. Do not over-moisturize; the skin needs to breathe.</p>
             </div>
-
-            <!-- Warnings -->
             <div class="bento-card col-12 warning-box reveal">
                 <div class="step-number">Crucial Rules / What To Avoid</div>
                 <h3 class="card-title">Protect your fresh ink.</h3>
                 <ul class="warning-list">
-                    <li><strong>Do not scratch or pick:</strong> Let the scabs and flakes fall off naturally. Picking will pull ink out of the skin and cause patchiness.</li>
-                    <li><strong>No swimming or soaking:</strong> Avoid pools, hot tubs, the ocean, and long baths for at least 3 weeks. Quick showers only.</li>
-                    <li><strong>Avoid direct sunlight:</strong> Keep the tattoo out of the sun while it heals. Once fully healed, always apply high-SPF sunscreen to prevent fading.</li>
-                    <li><strong>Skip heavy workouts:</strong> Avoid intense sweating and tight, abrasive clothing over the tattooed area for the first week.</li>
+                    <li><strong>Do not scratch or pick:</strong> Let scabs fall off naturally to prevent patchiness.</li>
+                    <li><strong>No swimming or soaking:</strong> Avoid pools, hot tubs, and baths for 3 weeks.</li>
+                    <li><strong>Avoid direct sunlight:</strong> Keep it out of the sun while healing. Use SPF later.</li>
+                    <li><strong>Skip heavy workouts:</strong> Avoid sweating and tight clothing for the first week.</li>
                 </ul>
             </div>
         </div>
@@ -116,6 +114,7 @@
     <script>
         const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }); });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }
     </script>
 </body>
 </html>
