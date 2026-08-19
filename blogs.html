@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tattoo Blogs & Insights - PB'S TATTOO</title>
+    <!-- Favicon Icons -->
     <link rel="icon" href="logo.png" type="image/png">
     <link rel="apple-touch-icon" href="logo.png">
+    
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root { --bg: #000000; --surface: #0e0e10; --border: rgba(255, 255, 255, 0.08); --text-primary: #ffffff; --text-secondary: #86868b; }
+        :root { --bg: #000000; --surface: #0e0e10; --border: rgba(255, 255, 255, 0.08); --surface-hover: #16161a; --text-primary: #ffffff; --text-secondary: #86868b; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
         body { background: var(--bg); color: var(--text-primary); padding-top: 100px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; overflow-x: hidden; }
         .reveal { opacity: 0; transform: translateY(40px); transition: all 1s; }
@@ -23,11 +25,14 @@
         .nav-btn { background: #fff; color: #000 !important; padding: 8px 18px; border-radius: 98px; }
 
         .container { max-width: 900px; width: 100%; padding: 40px 24px; margin: 0 auto; }
+        
         .header-section { text-align: center; margin-bottom: 60px; }
         .header-section h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 15px; }
         .header-section p { color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
 
+        /* Interactive Blog Cards */
         .blog-list { display: flex; flex-direction: column; gap: 24px; margin-bottom: 60px; }
+        
         .blog-card { background: var(--surface); border: 1px solid var(--border); border-radius: 24px; overflow: hidden; cursor: pointer; transition: all 0.3s; }
         .blog-card:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-3px); }
         
@@ -40,12 +45,15 @@
         .expand-icon { position: absolute; right: 30px; top: 50%; transform: translateY(-50%); width: 30px; height: 30px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
         .blog-card.open .expand-icon { transform: translateY(-50%) rotate(180deg); background: #ffffff; color: #000; }
 
+        /* Hidden Content */
         .blog-content { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0, 1, 0, 1); opacity: 0; padding: 0 30px; color: #b0b0b5; font-size: 1rem; line-height: 1.7; }
         .blog-card.open .blog-content { max-height: 2500px; opacity: 1; padding: 0 30px 40px; transition: max-height 1s ease-in-out, opacity 0.5s ease-in 0.2s; }
+        
         .blog-content h4 { color: #fff; margin: 25px 0 10px; font-size: 1.2rem; }
         .blog-content p { margin-bottom: 15px; }
 
         .menu-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.8rem; cursor: pointer; }
+
         @media (max-width: 900px) { 
             .menu-toggle { display: block; }
             .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: #0e0e10; flex-direction: column; padding: 20px 0; border-bottom: 1px solid var(--border); gap: 20px; z-index: 999;}
@@ -85,6 +93,8 @@
         </div>
 
         <div class="blog-list">
+            
+            <!-- Blog 1: Process -->
             <div class="blog-card reveal" onclick="toggleBlog(this)">
                 <div class="blog-header">
                     <div class="blog-meta"><span class="blog-tag">The Process</span> <span>4 Min Read</span></div>
@@ -92,12 +102,19 @@
                     <div class="expand-icon">↓</div>
                 </div>
                 <div class="blog-content">
-                    <h4>1. Sizing & Stencil Placement</h4><p>We review the design and check placement in the mirror to match your anatomy.</p>
-                    <h4>2. The Setup</h4><p>We use 100% sterile, single-use cartridge needles and medical-grade barriers.</p>
-                    <h4>3. Outlining & Shading</h4><p>We start with linework, then move to shading like black and grey washes or stippling.</p>
-                    <h4>4. Wrap</h4><p>Once finished, the tattoo gets wiped, wrapped, and we discuss aftercare.</p>
+                    <p>Walking into a tattoo studio can feel intimidating if you don't know what to expect. Here is the step-by-step breakdown of exactly what happens once you sit in the chair.</p>
+                    <h4>1. Sizing & Stencil Placement</h4>
+                    <p>First, we review the design. A stencil is printed and applied to your skin using a specialized transfer gel. We will check the placement in the mirror. This is your time to speak up—we can wipe it off and move it as many times as needed to get the perfect flow with your muscle anatomy!</p>
+                    <h4>2. The Setup</h4>
+                    <p>While the stencil dries, the station is prepared. We use 100% sterile, single-use cartridge needles and medical-grade barriers to ensure total clinical hygiene.</p>
+                    <h4>3. Outlining & Shading</h4>
+                    <p>The process always starts with the linework to establish the foundation. Depending on your chosen style, we then move on to shading—whether that is smooth black and grey washes for realism, or precise stippling for dotwork texture.</p>
+                    <h4>4. The Final Wipe & Wrap</h4>
+                    <p>Once finished, the tattoo gets a gentle, cooling wipe down with an antibacterial foam. We take some high-quality photos, wrap the piece in a protective film, and discuss your aftercare routine.</p>
                 </div>
             </div>
+
+            <!-- Blog 2: Pricing -->
             <div class="blog-card reveal" onclick="toggleBlog(this)">
                 <div class="blog-header">
                     <div class="blog-meta"><span class="blog-tag">Pricing</span> <span>3 Min Read</span></div>
@@ -105,10 +122,33 @@
                     <div class="expand-icon">↓</div>
                 </div>
                 <div class="blog-content">
-                    <h4>Complexity Over Size</h4><p>A small hyper-realistic portrait takes more time than a simple line tattoo.</p>
-                    <h4>The Setup Minimum</h4><p>Minimum charges cover fixed overhead safety costs like sterile barriers and premium inks.</p>
+                    <p>A common question is: "Why does a small tattoo sometimes cost more than a bigger one?" The answer lies in the complexity and the math behind the craft.</p>
+                    <h4>Complexity Over Size</h4>
+                    <p>Tattoo pricing is generally calculated by square inches and the style technique. A 4-inch minimalist line work tattoo takes significantly less time and technical strain than a 4-inch hyper-realistic portrait. High-contrast realism requires seamless grayscale gradients and surgical needle depth, which demands a higher rate.</p>
+                    <h4>The Setup Minimum</h4>
+                    <p>Every reputable studio has a baseline minimum charge. Whether a tattoo takes 10 minutes or an hour, the artist still uses a fresh needle cartridge, sterile barriers, imported inks, and premium sanitation supplies. The minimum charge covers these fixed overhead safety costs.</p>
+                    <h4>Investing in Permanence</h4>
+                    <p>Remember, a tattoo is an investment you wear forever. Premium inks retain their richness, and a skilled artist ensures the tattoo is applied at the exact correct depth in the skin so it doesn't blow out or fade prematurely.</p>
                 </div>
             </div>
+
+            <!-- Blog 3: Design Selection -->
+            <div class="blog-card reveal" onclick="toggleBlog(this)">
+                <div class="blog-header">
+                    <div class="blog-meta"><span class="blog-tag">Design Selection</span> <span>4 Min Read</span></div>
+                    <div class="blog-title">How to choose a concept that you will never regret.</div>
+                    <div class="expand-icon">↓</div>
+                </div>
+                <div class="blog-content">
+                    <p>Choosing a tattoo design can be overwhelming. The secret to a piece you will love for decades is focusing on aesthetic flow rather than forcing too much meaning into one image.</p>
+                    <h4>Bring References, Not Blueprints</h4>
+                    <p>When booking a consultation, bring 3 to 5 reference photos. Show us the *vibe* you like—maybe you love the heavy saturation of blackwork outlines, or the delicate shading of stippled dotwork. We will use those references to draw a custom piece that fits *your* body, rather than copying a design built for someone else's arm.</p>
+                    <h4>Trust the Anatomy</h4>
+                    <p>A good design works *with* your body, not against it. Long, sweeping designs look great on forearms and calves, while circular or symmetrical designs fit perfectly on shoulders or sternums. Trust your artist when they suggest scaling a design up slightly—tiny details crammed into a small space will blur as the skin naturally ages.</p>
+                </div>
+            </div>
+
+            <!-- Blog 4: Placement -->
             <div class="blog-card reveal" onclick="toggleBlog(this)">
                 <div class="blog-header">
                     <div class="blog-meta"><span class="blog-tag">Placement & Pain</span> <span>3 Min Read</span></div>
@@ -116,20 +156,99 @@
                     <div class="expand-icon">↓</div>
                 </div>
                 <div class="blog-content">
-                    <h4>The "Easy" Zones</h4><p>Outer forearms, thighs, calves. Thicker skin makes them perfect for your first tattoo.</p>
-                    <h4>The "Spicy" Zones</h4><p>Ribs, sternum, hands, and feet. Thin skin over bone means high pain.</p>
+                    <p>Your anatomy dictates not only how a design looks, but how it feels going in.</p>
+                    <h4>The "Easy" Zones (Low Pain)</h4>
+                    <p>Outer forearms, outer thighs, calves, and shoulders. These areas have thicker skin, more muscle mass, and fewer nerve endings. They are the perfect, comfortable canvas for your first tattoo.</p>
+                    <h4>The "Medium" Zones (Moderate Pain)</h4>
+                    <p>Inner biceps, inner forearms, back, and chest. The skin here is softer and more sensitive. It is completely manageable, but you will definitely feel a sharper sensation, especially near the armpit or collarbone.</p>
+                    <h4>The "Spicy" Zones (High Pain)</h4>
+                    <p>Ribs, sternum, kneecaps, spine, hands, and feet. These areas have very thin skin directly over bone, with a high concentration of nerve endings. You earn your ink in these spots!</p>
                 </div>
             </div>
+
+            <!-- Blog 5: Aftercare Insights -->
+            <div class="blog-card reveal" onclick="toggleBlog(this)">
+                <div class="blog-header">
+                    <div class="blog-meta"><span class="blog-tag">Aftercare</span> <span>3 Min Read</span></div>
+                    <div class="blog-title">Why the first two weeks dictate how your tattoo looks forever.</div>
+                    <div class="expand-icon">↓</div>
+                </div>
+                <div class="blog-content">
+                    <p>An artist can execute a flawless, perfectly saturated tattoo, but if the aftercare is poor, the healed result will suffer. Healing is 50% of the tattoo process.</p>
+                    <h4>The Scabbing Phase</h4>
+                    <p>As a tattoo heals, it forms a light, protective layer of skin and scabs. **Never pick or scratch them.** Picking prematurely rips the ink out of the underlying dermis, leaving patchy, faded spots that require touch-ups.</p>
+                    <h4>The Danger of Over-Moisturizing</h4>
+                    <p>Applying thick globs of ointment suffocates the tattoo. Tattoos are open wounds that need oxygen to heal. Apply only a microscopic, shiny layer of aftercare lotion. If the skin looks wet or glossy, you've used too much.</p>
+                    <h4>The Sun is the Enemy</h4>
+                    <p>UV rays break down pigment in the skin like a laser removal machine. Keep fresh tattoos entirely out of the sun, and once healed, sunscreen is your best friend to keep those blacks looking pitch black.</p>
+                </div>
+            </div>
+
+            <!-- Blog 6: History -->
+            <div class="blog-card reveal" onclick="toggleBlog(this)">
+                <div class="blog-header">
+                    <div class="blog-meta"><span class="blog-tag">Tattoo History</span> <span>3 Min Read</span></div>
+                    <div class="blog-title">The ancient roots of modern Blackwork and Dotwork.</div>
+                    <div class="expand-icon">↓</div>
+                </div>
+                <div class="blog-content">
+                    <p>While modern tattooing uses advanced rotary machines and clinical setups, styles like blackwork and dotwork have deep, ancient roots.</p>
+                    <h4>Tribal Origins</h4>
+                    <p>Heavy blackwork outlines and large saturated areas find their origins in Polynesian and ancient tribal tattooing. These tattoos were applied using bone or wooden combs dipped in ash-based ink, tapped into the skin to signify rank, lineage, and protection.</p>
+                    <h4>The Evolution of Stippling</h4>
+                    <p>Dotwork (or stippling) was historically a shading technique born out of necessity when smooth shading wasn't possible with rudimentary tools. Today, we use precise needle configurations to intentionally create those micro-dots, layering them strategically to build incredible texture, geometric mandalas, and depth without causing heavy trauma to the skin.</p>
+                </div>
+            </div>
+
+            <!-- Blog 7: Preparation -->
+            <div class="blog-card reveal" onclick="toggleBlog(this)">
+                <div class="blog-header">
+                    <div class="blog-meta"><span class="blog-tag">Preparation</span> <span>3 Min Read</span></div>
+                    <div class="blog-title">First Tattoo Anxiety? Here is exactly how to prepare.</div>
+                    <div class="expand-icon">↓</div>
+                </div>
+                <div class="blog-content">
+                    <p>Getting your first tattoo is an incredible experience, but feeling nervous is entirely normal. The best way to combat anxiety is through physical preparation.</p>
+                    <h4>1. Hydrate and Eat</h4>
+                    <p>Never show up to an appointment on an empty stomach. Eat a solid, carb-heavy meal 1-2 hours before your session to keep your blood sugar stable and prevent lightheadedness. Drink plenty of water the day before so your skin takes the ink easily.</p>
+                    <h4>2. Dress for Access</h4>
+                    <p>Wear loose clothing that allows easy access to the area getting tattooed. If you are getting a leg piece, bring loose shorts. Ink can splatter, so wear something dark that you don't mind getting a little dirty.</p>
+                </div>
+            </div>
+
+            <!-- Blog 8: Myths -->
+            <div class="blog-card reveal" onclick="toggleBlog(this)">
+                <div class="blog-header">
+                    <div class="blog-meta"><span class="blog-tag">Myths & Facts</span> <span>3 Min Read</span></div>
+                    <div class="blog-title">Top 3 Tattoo Myths Busted.</div>
+                    <div class="expand-icon">↓</div>
+                </div>
+                <div class="blog-content">
+                    <p>There is a lot of misinformation out there about tattoos. Let's clear up the biggest myths.</p>
+                    <h4>Myth 1: You bleed a lot during a tattoo.</h4>
+                    <p>Fact: The needles only penetrate the epidermis and the very top layer of the dermis (about 1-2 millimeters). While a few tiny drops of blood or plasma might surface, you do not "bleed out" during a tattoo.</p>
+                    <h4>Myth 2: Tattoos turn blue or green over time.</h4>
+                    <p>Fact: Decades ago, cheap inks degraded and turned a murky blue/green. Today, professional studios use high-quality, vegan-certified carbon black inks that stay true black as they age.</p>
+                    <h4>Myth 3: You can't get an MRI if you have tattoos.</h4>
+                    <p>Fact: While some very old inks (from over 40 years ago) contained trace amounts of iron oxide that could warm up during an MRI, modern premium inks do not react to magnetic fields at all. You are perfectly safe.</p>
+                </div>
+            </div>
+
         </div>
     </div>
 
     <script>
         const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }); });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
         function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }
+
         function toggleBlog(element) {
-            document.querySelectorAll('.blog-card').forEach(card => {
-                if (card !== element && card.classList.contains('open')) card.classList.remove('open');
+            const allCards = document.querySelectorAll('.blog-card');
+            allCards.forEach(card => {
+                if (card !== element && card.classList.contains('open')) {
+                    card.classList.remove('open');
+                }
             });
             element.classList.toggle('open');
         }
