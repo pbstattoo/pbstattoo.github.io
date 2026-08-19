@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Calculator - PB'S TATTOO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #000000; --surface: #0e0e10; --border: rgba(255, 255, 255, 0.08); --surface-hover: #16161a; --text-primary: #ffffff; --text-secondary: #86868b; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background: var(--bg); color: var(--text-primary); padding-top: 120px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        header { position: fixed; top: 0; width: 100%; z-index: 1000; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); background: rgba(0, 0, 0, 0.75); border-bottom: 1px solid var(--border); }
+        nav { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; width: 100%; }
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; font-size: 1.05rem; font-weight: 800; letter-spacing: 0.1em; color: #fff; }
+        .nav-links { display: flex; gap: 28px; align-items: center; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: color 0.2s;}
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-btn { background: #fff; color: #000 !important; padding: 8px 18px; border-radius: 98px; }
+
+        .calc-card { background: var(--surface); border: 1px solid var(--border); border-radius: 32px; padding: 50px 40px; max-width: 500px; width: 90%; margin-bottom: 60px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .calc-card h1 { font-size: 2.2rem; margin-bottom: 10px; text-align: center; }
+        .calc-card p { color: var(--text-secondary); margin-bottom: 40px; text-align: center; font-size: 0.95rem; }
+
+        label { display: block; font-size: 0.85rem; color: var(--text-secondary); font-weight: 600; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+        
+        /* Slider Styles */
+        .slider-container { margin-bottom: 30px; }
+        .slider-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
+        .slider-value { color: #fff; font-weight: 800; font-size: 1.1rem; }
+        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 24px; width: 24px; border-radius: 50%; background: #ffffff; cursor: pointer; margin-top: -10px; box-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cursor: pointer; background: var(--border); border-radius: 2px; }
+        
+        /* Select Box */
+        select { width: 100%; padding: 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 16px; color: var(--text-primary); margin-bottom: 40px; font-size: 1rem; cursor: pointer; outline: none; }
+        select:focus { border-color: #ffffff; }
+
+        /* Output Display */
+        .estimate-box { background: linear-gradient(180deg, #16161a 0%, #0e0e10 100%); border: 1px solid var(--border); border-radius: 24px; padding: 30px; text-align: center; margin-bottom: 20px; }
+        .estimate-label { color: var(--text-secondary); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+        .estimate-price { font-size: 3.5rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 10px; }
+        .estimate-disclaimer { font-size: 0.75rem; color: var(--text-secondary); line-height: 1.4; }
+
+        .submit-btn { display: block; text-align: center; background: #ffffff; color: #000000; padding: 18px; border-radius: 98px; font-weight: 700; text-decoration: none; transition: transform 0.2s; }
+        .submit-btn:hover { transform: scale(1.02); }
+
+        @media (max-width: 860px) { .nav-links { display: none; } .calc-card { padding: 30px 20px; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="PB'S TATTOO Logo" style="height: 35px; width: auto;" onerror="this.style.display='none';">
+                <span>PB'S TATTOO</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="calculator.html" style="color: #fff;">Pricing</a>
+                <a href="booking.html" class="nav-btn">Book Now</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="calc-card reveal">
+        <h1>Estimate Your Ink</h1>
+        <p>Adjust the size and style to get a rough starting estimate for your custom project.</p>
+
+        <div class="slider-container">
+            <div class="slider-header">
+                <label>Approximate Size</label>
+                <div class="slider-value"><span id="sizeOutput">3</span> Sq Inches</div>
+            </div>
+            <input type="range" id="sizeSlider" min="1" max="40" value="3">
+        </div>
+
+        <label>Tattoo Style & Technique</label>
+        <select id="styleSelect">
+            <option value="800">Line Work / Minimalist</option>
+            <option value="900">Blackwork Outlines</option>
+            <option value="1100">Dotwork Shading / Stippling</option>
+            <option value="1300">Black & Grey Realism</option>
+        </select>
+
+        <div class="estimate-box">
+            <div class="estimate-label">Estimated Starting Price</div>
+            <div class="estimate-price" id="priceOutput">₹2,400</div>
+            <div class="estimate-disclaimer">*This is a rough baseline estimate. Final pricing is determined after a 1-on-1 consultation and depends on placement, exact detail level, and design complexity. Minimum studio charge applies.</div>
+        </div>
+
+        <a href="booking.html" class="submit-btn">Continue to Booking</a>
+    </div>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }); });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Calculator Logic
+        const sizeSlider = document.getElementById('sizeSlider');
+        const styleSelect = document.getElementById('styleSelect');
+        const sizeOutput = document.getElementById('sizeOutput');
+        const priceOutput = document.getElementById('priceOutput');
+
+        const MINIMUM_CHARGE = 1500; // You can change your minimum studio charge here
+
+        function calculatePrice() {
+            const size = parseInt(sizeSlider.value);
+            const ratePerSqInch = parseInt(styleSelect.value);
+            
+            sizeOutput.textContent = size;
+            
+            let estimatedPrice = size * ratePerSqInch;
+            
+            // Ensure price doesn't drop below minimum charge
+            if (estimatedPrice < MINIMUM_CHARGE) {
+                estimatedPrice = MINIMUM_CHARGE;
+            }
+
+            // Format as Indian Rupees
+            priceOutput.textContent = '₹' + estimatedPrice.toLocaleString('en-IN');
+        }
+
+        sizeSlider.addEventListener('input', calculatePrice);
+        styleSelect.addEventListener('change', calculatePrice);
+        
+        // Run once on load
+        calculatePrice();
+    </script>
+</body>
+</html>
