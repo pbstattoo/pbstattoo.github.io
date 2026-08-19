@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tattoo Blogs & Insights - PB'S TATTOO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #000000; --surface: #0e0e10; --border: rgba(255, 255, 255, 0.08); --surface-hover: #16161a; --text-primary: #ffffff; --text-secondary: #86868b; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background: var(--bg); color: var(--text-primary); padding-top: 100px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; overflow-x: hidden; }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        header { position: fixed; top: 0; width: 100%; z-index: 1000; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); background: rgba(0, 0, 0, 0.75); border-bottom: 1px solid var(--border); }
+        nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; width: 100%; }
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; font-size: 1.05rem; font-weight: 800; letter-spacing: 0.1em; color: #fff; }
+        .nav-links { display: flex; gap: 24px; align-items: center; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: color 0.2s;}
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-btn { background: #fff; color: #000 !important; padding: 8px 18px; border-radius: 98px; }
+
+        .container { max-width: 900px; width: 100%; padding: 40px 24px; margin: 0 auto; }
+        
+        .header-section { text-align: center; margin-bottom: 60px; }
+        .header-section h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 15px; }
+        .header-section p { color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        /* Interactive Blog Cards */
+        .blog-list { display: flex; flex-direction: column; gap: 24px; margin-bottom: 60px; }
+        
+        .blog-card { background: var(--surface); border: 1px solid var(--border); border-radius: 24px; overflow: hidden; cursor: pointer; transition: all 0.3s; }
+        .blog-card:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-3px); }
+        
+        .blog-header { padding: 30px; display: flex; flex-direction: column; gap: 10px; position: relative; }
+        .blog-meta { display: flex; gap: 15px; font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 800; }
+        .blog-tag { color: #2997ff; }
+        .blog-title { font-size: 1.6rem; font-weight: 700; color: #fff; line-height: 1.3; transition: color 0.2s; }
+        .blog-card:hover .blog-title { color: #e0e0e0; }
+        
+        .expand-icon { position: absolute; right: 30px; top: 50%; transform: translateY(-50%); width: 30px; height: 30px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+        .blog-card.open .expand-icon { transform: translateY(-50%) rotate(180deg); background: #ffffff; color: #000; }
+
+        /* Hidden Content */
+        .blog-content { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0, 1, 0, 1); opacity: 0; padding: 0 30px; color: #b0b0b5; font-size: 1rem; line-height: 1.7; }
+        .blog-card.open .blog-content { max-height: 2000px; opacity: 1; padding: 0 30px 40px; transition: max-height 1s ease-in-out, opacity 0.5s ease-in 0.2s; }
+        
+        .blog-content h4 { color: #fff; margin: 20px 0 10px; font-size: 1.2rem; }
+        .blog-content p { margin-bottom: 15px; }
+
+        @media (max-width: 900px) { 
+            .nav-links { display: none; } 
+            .blog-title { font-size: 1.3rem; margin-right: 30px; }
+            .expand-icon { right: 20px; }
+            .blog-header { padding: 20px; }
+            .blog-card.open .blog-content { padding: 0 20px 30px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="PB'S TATTOO Logo" style="height: 35px; width: auto;" onerror="this.style.display='none';">
+                <span>PB'S TATTOO</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="calculator.html">Pricing</a>
+                <a href="aftercare.html">Aftercare</a>
+                <a href="blogs.html" style="color: #fff;">Blogs</a>
+                <a href="contact.html">Contact</a>
+                <a href="booking.html" class="nav-btn">Book Now</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="header-section reveal">
+            <h1>Studio Insights.</h1>
+            <p>Expert advice, styling guides, and everything you need to know before going under the needle.</p>
+        </div>
+
+        <div class="blog-list">
+            
+            <!-- Blog Post 1 -->
+            <div class="blog-card reveal" onclick="toggleBlog(this)">
+                <div class="blog-header">
+                    <div class="blog-meta"><span class="blog-tag">Preparation</span> <span>3 Min Read</span></div>
+                    <div class="blog-title">First Tattoo Anxiety? Here is exactly how to prepare.</div>
+                    <div class="expand-icon">↓</div>
+                </div>
+                <div class="blog-content">
+                    <p>Getting your first tattoo is an incredible experience, but it is completely normal to feel nervous. The best way to combat anxiety is through proper physical and mental preparation.</p>
+                    <h4>1. Hydrate and Eat</h4>
+                    <p>Never show up to a tattoo appointment on an empty stomach. Eat a solid, carb-heavy meal 1-2 hours before your session. This keeps your blood sugar stable and prevents lightheadedness. Drink plenty of water the day before to keep your skin hydrated and supple.</p>
+                    <h4>2. Dress for Comfort</h4>
+                    <p>Wear loose, comfortable clothing that allows easy access to the area getting tattooed. If you are getting a leg piece, bring shorts. If it is an arm piece, wear a tank top.</p>
+                    <h4>3. Don't Overthink the Pain</h4>
+                    <p>Yes, tattoos hurt, but it is highly manageable. It often feels like a scratching sensation or a mild sunburn. Breathe normally, bring headphones if you want to zone out, and trust your artist.</p>
+                </div>
+            </div>
+
+            <!-- Blog Post 2 -->
+            <div class="blog-card reveal delay-1" onclick="toggleBlog(this)">
+                <div class="blog-header">
+                    <div class="blog-meta"><span class="blog-tag">Styles & Trends</span> <span>4 Min Read</span></div>
+                    <div class="blog-title">Line Work vs. Realism: Which style ages better?</div>
+                    <div class="expand-icon">↓</div>
+                </div>
+                <div class="blog-content">
+                    <p>One of the most common questions clients ask is how their tattoo will look in 10 or 20 years. The truth is, all tattoos age, blur slightly, and settle into the skin. But different styles age differently.</p>
+                    <h4>Fine Line Work</h4>
+                    <p>Minimalist fine line tattoos are incredibly popular right now. Because the lines are so delicate, they can sometimes fade faster than thicker styles. However, if done by a skilled artist who knows the correct needle depth, they age beautifully into soft, pencil-like sketches. They are also very easy to touch up.</p>
+                    <h4>Black & Grey Realism</h4>
+                    <p>Realism relies heavily on shading and gradients rather than hard outlines. Because there are no "holding lines," the contrast is crucial. High-contrast realism (with deep blacks and negative space) ages remarkably well. Low-contrast pieces (very light grey washes) tend to soften and blur together over time.</p>
+                    <h4>The Verdict</h4>
+                    <p>Both styles can last a lifetime if two conditions are met: you choose an experienced artist, and you religiously protect the tattoo from the sun.</p>
+                </div>
+            </div>
+
+            <!-- Blog Post 3 -->
+            <div class="blog-card reveal delay-2" onclick="toggleBlog(this)">
+                <div class="blog-header">
+                    <div class="blog-meta"><span class="blog-tag">Placement</span> <span>2 Min Read</span></div>
+                    <div class="blog-title">The ultimate guide to tattoo placement and pain levels.</div>
+                    <div class="expand-icon">↓</div>
+                </div>
+                <div class="blog-content">
+                    <p>If you are planning your next piece, placement is just as important as the design itself. Your anatomy changes how a tattoo flows, and it definitely changes how it feels.</p>
+                    <h4>The "Easy" Zones (Low Pain)</h4>
+                    <p>Outer forearms, outer thighs, calves, and shoulders. These areas have thicker skin, more muscle, and fewer nerve endings. They are the perfect canvas for your first tattoo.</p>
+                    <h4>The "Medium" Zones (Moderate Pain)</h4>
+                    <p>Inner biceps, inner forearms, back, and chest. The skin here is softer and more sensitive. It is completely manageable, but you will definitely feel a sharper sting.</p>
+                    <h4>The "Spicy" Zones (High Pain)</h4>
+                    <p>Ribs, sternum, kneecaps, spine, hands, and feet. These areas have very thin skin directly over bone, with a high concentration of nerve endings. You will earn your ink in these spots!</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Reveal Animations
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }); });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Interactive Accordion Logic
+        function toggleBlog(element) {
+            // Close all other open blogs
+            const allCards = document.querySelectorAll('.blog-card');
+            allCards.forEach(card => {
+                if (card !== element && card.classList.contains('open')) {
+                    card.classList.remove('open');
+                }
+            });
+            // Toggle the clicked blog
+            element.classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
