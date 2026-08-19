@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PB'S TATTOO — Precision Ink & Artistry</title>
+    <!-- Favicon Icons -->
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="logo.png">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -16,40 +20,23 @@
         .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; }
         
         header { position: fixed; top: 0; width: 100%; z-index: 1000; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); background: rgba(0, 0, 0, 0.75); border-bottom: 1px solid var(--border); }
-        nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; }
+        nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; position: relative; }
         .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; font-size: 1.05rem; font-weight: 800; letter-spacing: 0.1em; color: #fff; }
         .nav-links { display: flex; gap: 24px; align-items: center; }
         .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
         .nav-links a:hover { color: var(--text-primary); }
         .nav-btn { background: #fff; color: #000 !important; padding: 8px 18px; border-radius: 98px; font-weight: 600 !important; }
 
-        /* General Section Limits */
+        .menu-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.8rem; cursor: pointer; }
         section { max-width: 1120px; margin: 0 auto; padding: 80px 24px; }
 
-        /* Full-Size Unzoomed Hero Section */
         .hero { 
-            max-width: 100%; 
-            width: 100%;
-            margin: 0; 
-            min-height: 100vh; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            text-align: center; 
-            padding: 120px 24px 80px; 
-            position: relative;
-            background-color: #000000;
-            background-image: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.95) 100%), url('banner1.png');
-            background-size: contain; /* Prevents the zoom and shows top-to-bottom */
-            background-position: center center; 
-            background-repeat: no-repeat; /* Stops the image from repeating on the sides */
-            background-attachment: fixed; 
+            max-width: 100%; width: 100%; margin: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 24px 80px; position: relative;
+            background-color: #000000; background-image: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.95) 100%), url('banner1.png'); background-size: contain; background-position: center center; background-repeat: no-repeat; background-attachment: fixed; 
         }
         
         .hero h1 { font-size: clamp(3rem, 8vw, 6rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 20px; color: #ffffff; text-shadow: 0 4px 20px rgba(0,0,0,0.8); }
         .hero p { font-size: clamp(1.1rem, 2vw, 1.35rem); color: #e0e0e0; max-width: 600px; margin-bottom: 40px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
-        
         .btn-primary { background: #ffffff; color: #000000; padding: 16px 32px; border-radius: 98px; font-weight: 600; text-decoration: none; display: inline-flex; transition: transform 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .btn-primary:hover { transform: scale(1.05); }
 
@@ -58,9 +45,11 @@
         .standard-item h4 { font-size: 1.2rem; margin-bottom: 10px; }
         .standard-item p { color: var(--text-secondary); font-size: 0.9rem; }
         
-        @media (max-width: 860px) { 
-            .nav-links { display: none; } 
-            .hero { background-attachment: scroll; background-size: cover; } /* Keeps it looking good on narrow mobile screens */
+        @media (max-width: 900px) { 
+            .menu-toggle { display: block; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: #0e0e10; flex-direction: column; padding: 20px 0; border-bottom: 1px solid var(--border); gap: 20px; z-index: 999; }
+            .nav-links.active { display: flex; } 
+            .hero { background-attachment: scroll; background-size: cover; } 
         }
     </style>
 </head>
@@ -71,6 +60,7 @@
                 <img src="logo.png" alt="PB'S TATTOO Logo" style="height: 35px; width: auto;" onerror="this.style.display='none';">
                 <span>PB'S TATTOO</span>
             </a>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
             <div class="nav-links">
                 <a href="index.html" style="color: #fff;">Home</a>
                 <a href="portfolio.html">Portfolio</a>
@@ -83,7 +73,6 @@
             </div>
         </nav>
     </header>
-
     <main>
         <section class="hero">
             <h1 class="reveal">Skin is the canvas.<br>Needle is the brush.</h1>
@@ -92,30 +81,20 @@
                 <a href="booking.html" class="btn-primary">Book Consultation</a>
             </div>
         </section>
-
         <section class="reveal">
             <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 10px;">Studio Standards</h2>
             <p style="text-align: center; color: var(--text-secondary);">Clinical precision for every session.</p>
             <div class="standards-grid">
-                <div class="standard-item">
-                    <h4>100% Sterile</h4>
-                    <p>Single-use cartridge needles and medical-grade sterilization.</p>
-                </div>
-                <div class="standard-item">
-                    <h4>Premium Inks</h4>
-                    <p>Imported vegan-certified inks for longevity and richness.</p>
-                </div>
-                <div class="standard-item">
-                    <h4>Custom Design</h4>
-                    <p>1-on-1 collaborative scaling to fit your exact anatomy.</p>
-                </div>
+                <div class="standard-item"><h4>100% Sterile</h4><p>Single-use cartridge needles and medical-grade sterilization.</p></div>
+                <div class="standard-item"><h4>Premium Inks</h4><p>Imported vegan-certified inks for longevity and richness.</p></div>
+                <div class="standard-item"><h4>Custom Design</h4><p>1-on-1 collaborative scaling to fit your exact anatomy.</p></div>
             </div>
         </section>
     </main>
-
     <script>
         const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }); });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }
     </script>
 </body>
 </html>
