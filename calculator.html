@@ -20,34 +20,35 @@
         .nav-links a:hover { color: var(--text-primary); }
         .nav-btn { background: #fff; color: #000 !important; padding: 8px 18px; border-radius: 98px; }
 
-        .calc-card { background: var(--surface); border: 1px solid var(--border); border-radius: 32px; padding: 50px 40px; max-width: 500px; width: 90%; margin-bottom: 60px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
-        .calc-card h1 { font-size: 2.2rem; margin-bottom: 10px; text-align: center; }
-        .calc-card p { color: var(--text-secondary); margin-bottom: 40px; text-align: center; font-size: 0.95rem; }
+        .calc-card { background: var(--surface); border: 1px solid var(--border); border-radius: 32px; padding: 40px 40px; max-width: 550px; width: 90%; margin-bottom: 60px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .calc-card h1 { font-size: 2.2rem; margin-bottom: 5px; text-align: center; }
+        .calc-card p { color: var(--text-secondary); margin-bottom: 30px; text-align: center; font-size: 0.95rem; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
 
-        label { display: block; font-size: 0.85rem; color: var(--text-secondary); font-weight: 600; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+        label { display: block; font-size: 0.85rem; color: var(--text-secondary); font-weight: 600; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
         
-        /* Slider Styles */
-        .slider-container { margin-bottom: 30px; }
-        .slider-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
-        .slider-value { color: #fff; font-weight: 800; font-size: 1.1rem; }
-        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
-        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 24px; width: 24px; border-radius: 50%; background: #ffffff; cursor: pointer; margin-top: -10px; box-shadow: 0 0 10px rgba(255,255,255,0.5); }
-        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cursor: pointer; background: var(--border); border-radius: 2px; }
-        
-        /* Select Box */
-        select { width: 100%; padding: 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 16px; color: var(--text-primary); margin-bottom: 40px; font-size: 1rem; cursor: pointer; outline: none; }
-        select:focus { border-color: #ffffff; }
+        select, input[type="number"] { width: 100%; padding: 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 16px; color: var(--text-primary); margin-bottom: 24px; font-size: 1rem; cursor: pointer; outline: none; transition: border-color 0.3s; }
+        select:focus, input[type="number"]:focus { border-color: #ffffff; }
+
+        .dimensions-row { display: flex; gap: 15px; }
+        .dimensions-row > div { flex: 1; }
 
         /* Output Display */
-        .estimate-box { background: linear-gradient(180deg, #16161a 0%, #0e0e10 100%); border: 1px solid var(--border); border-radius: 24px; padding: 30px; text-align: center; margin-bottom: 20px; }
-        .estimate-label { color: var(--text-secondary); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
-        .estimate-price { font-size: 3.5rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 10px; }
-        .estimate-disclaimer { font-size: 0.75rem; color: var(--text-secondary); line-height: 1.4; }
+        .estimate-box { background: linear-gradient(180deg, #16161a 0%, #0e0e10 100%); border: 1px solid #2997ff; border-radius: 24px; padding: 30px; text-align: center; margin-bottom: 30px; margin-top: 10px; }
+        .estimate-label { color: #86868b; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+        .estimate-price { font-size: 3.5rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 10px; color: #2997ff; }
+        .estimate-details { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; border-top: 1px solid var(--border); padding-top: 15px; }
+        .estimate-details strong { color: #ffffff; }
+
+        /* Terms Box */
+        .terms-card { background: var(--bg); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-bottom: 30px; }
+        .terms-card h3 { font-size: 1rem; margin-bottom: 12px; color: #ffffff; }
+        .terms-list { padding-left: 20px; margin: 0; color: #86868b; font-size: 0.8rem; line-height: 1.5; }
+        .terms-list li { margin-bottom: 8px; }
 
         .submit-btn { display: block; text-align: center; background: #ffffff; color: #000000; padding: 18px; border-radius: 98px; font-weight: 700; text-decoration: none; transition: transform 0.2s; }
         .submit-btn:hover { transform: scale(1.02); }
 
-        @media (max-width: 860px) { .nav-links { display: none; } .calc-card { padding: 30px 20px; } }
+        @media (max-width: 860px) { .nav-links { display: none; } .calc-card { padding: 30px 20px; } .dimensions-row { flex-direction: column; gap: 0; } }
     </style>
 </head>
 <body>
@@ -59,75 +60,116 @@
             </a>
             <div class="nav-links">
                 <a href="index.html">Home</a>
-                <a href="gallery.html">Gallery</a>
+                <a href="gallery.html">Gallery & Styles</a>
                 <a href="calculator.html" style="color: #fff;">Pricing</a>
+                <a href="contact.html">Contact</a>
                 <a href="booking.html" class="nav-btn">Book Now</a>
             </div>
         </nav>
     </header>
 
     <div class="calc-card reveal">
-        <h1>Estimate Your Ink</h1>
-        <p>Adjust the size and style to get a rough starting estimate for your custom project.</p>
+        <h1>Tattoo Price Calculator</h1>
+        <p>Calculate session pricing based on complexity, color preference, and square inch dimensions (₹500 minimum baseline).</p>
 
-        <div class="slider-container">
-            <div class="slider-header">
-                <label>Approximate Size</label>
-                <div class="slider-value"><span id="sizeOutput">3</span> Sq Inches</div>
+        <form id="calcForm" onsubmit="event.preventDefault();">
+            
+            <label>Complexity *</label>
+            <select id="complexitySelect">
+                <option value="300">Simple (₹300 / Sq. Inch)</option>
+                <option value="500" selected>Medium (₹500 / Sq. Inch)</option>
+                <option value="1000">Complex (₹1000 / Sq. Inch)</option>
+            </select>
+
+            <label>Color Type *</label>
+            <select id="colorSelect">
+                <option value="0" selected>Black And White</option>
+                <option value="100">Color (+₹100 / Sq. Inch)</option>
+            </select>
+
+            <div class="dimensions-row">
+                <div>
+                    <label>Height (Inches) *</label>
+                    <input type="number" id="heightInput" step="0.1" min="0.5" value="5" required>
+                </div>
+                <div>
+                    <label>Width (Inches) *</label>
+                    <input type="number" id="widthInput" step="0.1" min="0.5" value="4" required>
+                </div>
             </div>
-            <input type="range" id="sizeSlider" min="1" max="40" value="3">
-        </div>
 
-        <label>Tattoo Style & Technique</label>
-        <select id="styleSelect">
-            <option value="800">Line Work / Minimalist</option>
-            <option value="900">Blackwork Outlines</option>
-            <option value="1100">Dotwork Shading / Stippling</option>
-            <option value="1300">Black & Grey Realism</option>
-        </select>
+            <div class="estimate-box">
+                <div class="estimate-label">Estimated Quote</div>
+                <div class="estimate-price" id="priceOutput">₹0</div>
+                <div class="estimate-details" id="detailsOutput">
+                    Total Area: <strong>0 sq. inches</strong><br>
+                    Rate Applied: <strong>₹0 / sq. in.</strong>
+                </div>
+            </div>
 
-        <div class="estimate-box">
-            <div class="estimate-label">Estimated Starting Price</div>
-            <div class="estimate-price" id="priceOutput">₹2,400</div>
-            <div class="estimate-disclaimer">*This is a rough baseline estimate. Final pricing is determined after a 1-on-1 consultation and depends on placement, exact detail level, and design complexity. Minimum studio charge applies.</div>
-        </div>
+            <div class="terms-card">
+                <h3>Terms & Conditions</h3>
+                <ul class="terms-list">
+                    <li><strong>Estimates Only:</strong> The calculated quote is an approximation based on standard dimensions and complexity. Final pricing may vary depending on skin texture, precise placement, and detailed design adjustments.</li>
+                    <li><strong>Minimum Charge:</strong> All studio sessions carry a minimum baseline charge of ₹500 regardless of total dimensions.</li>
+                    <li><strong>Deposits:</strong> A non-refundable advance deposit is required to secure custom design slots and appointment dates at PB'S TATTOO.</li>
+                    <li><strong>Touch-Ups:</strong> Complimentary minor touch-ups (if required due to healing) are evaluated within 30 days of the initial session.</li>
+                </ul>
+            </div>
 
-        <a href="booking.html" class="submit-btn">Continue to Booking</a>
+            <a href="booking.html" class="submit-btn">Continue to Booking</a>
+        </form>
     </div>
 
     <script>
+        // Animations
         const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }); });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Calculator Logic
-        const sizeSlider = document.getElementById('sizeSlider');
-        const styleSelect = document.getElementById('styleSelect');
-        const sizeOutput = document.getElementById('sizeOutput');
+        // Calculator Logic matching the exact PHP script math
+        const MIN_CHARGE = 500;
+        
+        const complexitySelect = document.getElementById('complexitySelect');
+        const colorSelect = document.getElementById('colorSelect');
+        const heightInput = document.getElementById('heightInput');
+        const widthInput = document.getElementById('widthInput');
+        
         const priceOutput = document.getElementById('priceOutput');
-
-        const MINIMUM_CHARGE = 1500; // You can change your minimum studio charge here
+        const detailsOutput = document.getElementById('detailsOutput');
 
         function calculatePrice() {
-            const size = parseInt(sizeSlider.value);
-            const ratePerSqInch = parseInt(styleSelect.value);
-            
-            sizeOutput.textContent = size;
-            
-            let estimatedPrice = size * ratePerSqInch;
-            
-            // Ensure price doesn't drop below minimum charge
-            if (estimatedPrice < MINIMUM_CHARGE) {
-                estimatedPrice = MINIMUM_CHARGE;
+            // Get values
+            const baseRate = parseInt(complexitySelect.value);
+            const colorModifier = parseInt(colorSelect.value);
+            const height = parseFloat(heightInput.value) || 0;
+            const width = parseFloat(widthInput.value) || 0;
+
+            // Math
+            const finalRate = baseRate + colorModifier;
+            const totalSqInches = height * width;
+            let estimatedPrice = totalSqInches * finalRate;
+
+            // Apply Minimum Charge Rule
+            if (estimatedPrice < MIN_CHARGE) {
+                estimatedPrice = MIN_CHARGE;
             }
 
-            // Format as Indian Rupees
-            priceOutput.textContent = '₹' + estimatedPrice.toLocaleString('en-IN');
+            // Update UI
+            priceOutput.textContent = '₹' + estimatedPrice.toLocaleString('en-IN', { maximumFractionDigits: 0 });
+            
+            detailsOutput.innerHTML = `
+                Total Area: <strong>${totalSqInches.toFixed(1)} sq. inches</strong><br>
+                Rate Applied: <strong>₹${finalRate} / sq. in.</strong>
+            `;
         }
 
-        sizeSlider.addEventListener('input', calculatePrice);
-        styleSelect.addEventListener('change', calculatePrice);
+        // Add event listeners so it calculates instantly when the user types or clicks
+        complexitySelect.addEventListener('change', calculatePrice);
+        colorSelect.addEventListener('change', calculatePrice);
+        heightInput.addEventListener('input', calculatePrice);
+        widthInput.addEventListener('input', calculatePrice);
         
-        // Run once on load
+        // Run once immediately on page load
         calculatePrice();
     </script>
 </body>
