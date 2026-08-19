@@ -26,11 +26,11 @@
         /* General Section Limits */
         section { max-width: 1120px; margin: 0 auto; padding: 80px 24px; }
 
-        /* Apple-Style Parallax Hero Section - Edge to Edge */
+        /* Full-Size Unzoomed Hero Section */
         .hero { 
-            max-width: 100%; /* Overrides the standard section width */
+            max-width: 100%; 
             width: 100%;
-            margin: 0; /* Removes centering gaps */
+            margin: 0; 
             min-height: 100vh; 
             display: flex; 
             flex-direction: column; 
@@ -39,14 +39,16 @@
             text-align: center; 
             padding: 120px 24px 80px; 
             position: relative;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.9) 100%), url('banner1.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed; /* Creates the smooth parallax scrolling effect */
+            background-color: #000000;
+            background-image: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.95) 100%), url('banner1.png');
+            background-size: contain; /* Prevents the zoom and shows top-to-bottom */
+            background-position: center center; 
+            background-repeat: no-repeat; /* Stops the image from repeating on the sides */
+            background-attachment: fixed; 
         }
         
-        .hero h1 { font-size: clamp(3rem, 8vw, 6rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 20px; color: #ffffff; text-shadow: 0 4px 20px rgba(0,0,0,0.5); }
-        .hero p { font-size: clamp(1.1rem, 2vw, 1.35rem); color: #e0e0e0; max-width: 600px; margin-bottom: 40px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .hero h1 { font-size: clamp(3rem, 8vw, 6rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 20px; color: #ffffff; text-shadow: 0 4px 20px rgba(0,0,0,0.8); }
+        .hero p { font-size: clamp(1.1rem, 2vw, 1.35rem); color: #e0e0e0; max-width: 600px; margin-bottom: 40px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
         
         .btn-primary { background: #ffffff; color: #000000; padding: 16px 32px; border-radius: 98px; font-weight: 600; text-decoration: none; display: inline-flex; transition: transform 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .btn-primary:hover { transform: scale(1.05); }
@@ -58,7 +60,7 @@
         
         @media (max-width: 860px) { 
             .nav-links { display: none; } 
-            .hero { background-attachment: scroll; } /* Smooth fallback for mobile */
+            .hero { background-attachment: scroll; background-size: cover; } /* Keeps it looking good on narrow mobile screens */
         }
     </style>
 </head>
