@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Appointment - PB'S TATTOO</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root { --bg: #000000; --surface: #0e0e10; --border: rgba(255, 255, 255, 0.08); --surface-hover: #16161a; --text-primary: #ffffff; --text-secondary: #86868b; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-        body { background: var(--bg); color: var(--text-primary); padding-top: 120px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        body { background: var(--bg); color: var(--text-primary); padding-top: 120px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; overflow-x: hidden; }
         .reveal { opacity: 0; transform: translateY(40px); transition: all 1s; }
         .reveal.active { opacity: 1; transform: translateY(0); }
         
         header { position: fixed; top: 0; width: 100%; z-index: 1000; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); background: rgba(0, 0, 0, 0.75); border-bottom: 1px solid var(--border); }
-        nav { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; width: 100%; }
+        nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; width: 100%; position: relative;}
         .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; font-size: 1.05rem; font-weight: 800; letter-spacing: 0.1em; color: #fff; }
-        .nav-links { display: flex; gap: 28px; align-items: center; }
+        .nav-links { display: flex; gap: 24px; align-items: center; }
         .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: color 0.2s;}
         .nav-links a:hover { color: var(--text-primary); }
         .nav-btn { background: #fff; color: #000 !important; padding: 8px 18px; border-radius: 98px; }
@@ -24,7 +26,6 @@
         .booking-card h1 { font-size: 2.2rem; margin-bottom: 10px; text-align: center; }
         .booking-card p { color: var(--text-secondary); margin-bottom: 30px; text-align: center; font-size: 0.95rem; }
 
-        /* Form Styles */
         form { display: flex; flex-direction: column; }
         label { font-size: 0.85rem; color: var(--text-secondary); font-weight: 600; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
         input, select, textarea { width: 100%; padding: 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 16px; color: var(--text-primary); margin-bottom: 24px; font-size: 1rem; transition: border-color 0.3s; }
@@ -34,7 +35,13 @@
         .submit-btn { background: #ffffff; color: #000000; padding: 18px; border-radius: 98px; font-weight: 700; font-size: 1rem; border: none; cursor: pointer; transition: transform 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 10px; }
         .submit-btn:hover { transform: scale(1.02); }
 
-        @media (max-width: 860px) { .nav-links { display: none; } .booking-card { padding: 30px 20px; } }
+        .menu-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.8rem; cursor: pointer; }
+        @media (max-width: 900px) { 
+            .menu-toggle { display: block; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: #0e0e10; flex-direction: column; padding: 20px 0; border-bottom: 1px solid var(--border); gap: 20px; z-index: 999;}
+            .nav-links.active { display: flex; }
+            .booking-card { padding: 30px 20px; } 
+        }
     </style>
 </head>
 <body>
@@ -44,6 +51,7 @@
                 <img src="logo.png" alt="PB'S TATTOO Logo" style="height: 35px; width: auto;" onerror="this.style.display='none';">
                 <span>PB'S TATTOO</span>
             </a>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="portfolio.html">Portfolio</a>
@@ -98,14 +106,12 @@
     </div>
 
     <script>
-        // Animation
         const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }); });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }
 
-        // WhatsApp Redirect Logic
         function sendToWhatsApp(event) {
-            event.preventDefault(); // Prevents the page from refreshing
-            
+            event.preventDefault(); 
             const name = document.getElementById('name').value;
             const style = document.getElementById('style').value;
             const placement = document.getElementById('placement').value;
@@ -113,13 +119,11 @@
             const date = document.getElementById('date').value;
             const desc = document.getElementById('desc').value;
 
-            // Format the message
             const message = `Hello PB'S TATTOO! I would like to request an appointment.%0A%0A*Name:* ${name}%0A*Style:* ${style}%0A*Placement:* ${placement}%0A*Size:* ${size}%0A*Preferred Date:* ${date}%0A*Concept:* ${desc}%0A%0A(I will send my reference images next!)`;
             
-            // Redirect to your number
             const whatsappUrl = `https://wa.me/917972693178?text=${message}`;
             window.open(whatsappUrl, '_blank');
         }
     </script>
 </body>
-</html> 
+</html>
