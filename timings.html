@@ -43,8 +43,8 @@
         .day-row { display: flex; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid var(--border); font-size: 1.05rem; }
         .day-row:last-child { border-bottom: none; padding-bottom: 0; }
         .day { font-weight: 600; color: #e0e0e0; }
-        .hours { color: var(--text-secondary); }
-        .closed { color: #2997ff; font-weight: 600; } /* Blue for Appointments Only to make it pop */
+        .closed-red { color: #ff4545; font-weight: 600; }
+        .appt-blue { color: #2997ff; font-weight: 600; } 
 
         /* Info Text */
         .info-desc { color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px; font-size: 0.95rem; }
@@ -87,7 +87,7 @@
     <div class="container">
         <div class="header-section reveal">
             <h1>Studio Hours.</h1>
-            <p>Plan your visit. Whether you are dropping in for a consultation or sitting down for a full-day session.</p>
+            <p>We operate on an exclusive weekend schedule to ensure uninterrupted focus on your custom pieces.</p>
         </div>
 
         <div class="bento-grid">
@@ -98,31 +98,31 @@
                 <div class="schedule-list">
                     <div class="day-row">
                         <span class="day">Monday</span>
-                        <span class="hours">11:00 AM – 8:00 PM</span>
+                        <span class="closed-red">Closed</span>
                     </div>
                     <div class="day-row">
                         <span class="day">Tuesday</span>
-                        <span class="hours">11:00 AM – 8:00 PM</span>
+                        <span class="closed-red">Closed</span>
                     </div>
                     <div class="day-row">
                         <span class="day">Wednesday</span>
-                        <span class="hours">11:00 AM – 8:00 PM</span>
+                        <span class="closed-red">Closed</span>
                     </div>
                     <div class="day-row">
                         <span class="day">Thursday</span>
-                        <span class="hours">11:00 AM – 8:00 PM</span>
+                        <span class="closed-red">Closed</span>
                     </div>
                     <div class="day-row">
                         <span class="day">Friday</span>
-                        <span class="hours">11:00 AM – 8:00 PM</span>
+                        <span class="closed-red">Closed</span>
                     </div>
                     <div class="day-row">
                         <span class="day">Saturday</span>
-                        <span class="closed">Appointments Only</span>
+                        <span class="appt-blue">Appointments Only</span>
                     </div>
                     <div class="day-row">
                         <span class="day">Sunday</span>
-                        <span class="closed">Appointments Only</span>
+                        <span class="appt-blue">Appointments Only</span>
                     </div>
                 </div>
             </div>
@@ -131,14 +131,14 @@
             <div class="bento-card col-5 reveal delay-1" style="display: flex; flex-direction: column; justify-content: space-between;">
                 <div>
                     <h2 class="card-title">Location & Visits</h2>
-                    <p class="info-desc">Drop by our studio in <strong>Madgaon, Goa</strong> to discuss your next piece.</p>
-                    <p class="info-desc"><strong>Walk-ins:</strong> Welcome Monday through Friday for consultations and small flash designs, subject to daily availability.</p>
-                    <p class="info-desc"><strong>Weekends:</strong> Saturday and Sunday are strictly by appointment only to ensure dedicated, uninterrupted time for custom sessions.</p>
+                    <p class="info-desc">Drop by our studio in <strong>Madgaon, Goa</strong>.</p>
+                    <p class="info-desc"><strong>Weekdays:</strong> The studio is closed Monday through Friday.</p>
+                    <p class="info-desc"><strong>Weekends:</strong> We operate exclusively on Saturdays and Sundays. All sessions are strictly by appointment only to give your design the time and attention it deserves.</p>
                 </div>
                 
                 <div class="cta-banner">
                     <h2>Ready to start?</h2>
-                    <p>Secure your slot in our schedule.</p>
+                    <p>Secure your weekend slot.</p>
                     <a href="booking.html" class="btn-primary">Book Appointment</a>
                 </div>
             </div>
