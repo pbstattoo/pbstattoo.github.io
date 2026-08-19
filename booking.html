@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - PB'S TATTOO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #000000; --surface: #0e0e10; --border: rgba(255, 255, 255, 0.08); --surface-hover: #16161a; --text-primary: #ffffff; --text-secondary: #86868b; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background: var(--bg); color: var(--text-primary); padding-top: 120px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        header { position: fixed; top: 0; width: 100%; z-index: 1000; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); background: rgba(0, 0, 0, 0.75); border-bottom: 1px solid var(--border); }
+        nav { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; width: 100%; }
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; font-size: 1.05rem; font-weight: 800; letter-spacing: 0.1em; color: #fff; }
+        .nav-links { display: flex; gap: 28px; align-items: center; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: color 0.2s;}
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-btn { background: #fff; color: #000 !important; padding: 8px 18px; border-radius: 98px; }
+
+        .booking-card { background: var(--surface); border: 1px solid var(--border); border-radius: 32px; padding: 50px 40px; max-width: 600px; width: 90%; margin-bottom: 60px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .booking-card h1 { font-size: 2.2rem; margin-bottom: 10px; text-align: center; }
+        .booking-card p { color: var(--text-secondary); margin-bottom: 30px; text-align: center; font-size: 0.95rem; }
+
+        /* Form Styles */
+        form { display: flex; flex-direction: column; }
+        label { font-size: 0.85rem; color: var(--text-secondary); font-weight: 600; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+        input, select, textarea { width: 100%; padding: 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 16px; color: var(--text-primary); margin-bottom: 24px; font-size: 1rem; transition: border-color 0.3s; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: #ffffff; }
+        textarea { resize: vertical; min-height: 120px; }
+        
+        .submit-btn { background: #ffffff; color: #000000; padding: 18px; border-radius: 98px; font-weight: 700; font-size: 1rem; border: none; cursor: pointer; transition: transform 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 10px; }
+        .submit-btn:hover { transform: scale(1.02); }
+
+        @media (max-width: 860px) { .nav-links { display: none; } .booking-card { padding: 30px 20px; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="PB'S TATTOO Logo" style="height: 35px; width: auto;" onerror="this.style.display='none';">
+                <span>PB'S TATTOO</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="gallery.html">Gallery & Styles</a>
+                <a href="contact.html">Contact</a>
+                <a href="booking.html" class="nav-btn">Book Now</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="booking-card reveal">
+        <h1>Request an Appointment</h1>
+        <p>Fill out the details below. We will receive your request directly on WhatsApp to finalize the consultation.</p>
+
+        <form id="bookingForm" onsubmit="sendToWhatsApp(event)">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" required placeholder="Enter your name">
+
+            <label for="style">Tattoo Style</label>
+            <select id="style" required>
+                <option value="" disabled selected>Select a style...</option>
+                <option value="Line Work">Line Work</option>
+                <option value="Realism">Realism</option>
+                <option value="Black & Grey">Black & Grey</option>
+                <option value="Dotwork Shading">Dotwork Shading</option>
+                <option value="Blackwork Outlines">Blackwork Outlines</option>
+                <option value="Other / Custom">Other / Custom</option>
+            </select>
+
+            <label for="placement">Placement on Body</label>
+            <input type="text" id="placement" required placeholder="e.g., Inner forearm, upper back">
+
+            <label for="size">Approximate Size</label>
+            <input type="text" id="size" required placeholder="e.g., 5 inches, half sleeve">
+
+            <label for="date">Preferred Month/Date</label>
+            <input type="text" id="date" required placeholder="e.g., Mid-October or specific date">
+
+            <label for="desc">Design Concept & Details</label>
+            <textarea id="desc" required placeholder="Describe your idea... (You can send reference pictures on WhatsApp after clicking submit)"></textarea>
+
+            <button type="submit" class="submit-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+                </svg>
+                Continue to WhatsApp
+            </button>
+        </form>
+    </div>
+
+    <script>
+        // Animation
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }); });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // WhatsApp Redirect Logic
+        function sendToWhatsApp(event) {
+            event.preventDefault(); // Prevents the page from refreshing
+            
+            const name = document.getElementById('name').value;
+            const style = document.getElementById('style').value;
+            const placement = document.getElementById('placement').value;
+            const size = document.getElementById('size').value;
+            const date = document.getElementById('date').value;
+            const desc = document.getElementById('desc').value;
+
+            // Format the message
+            const message = `Hello PB'S TATTOO! I would like to request an appointment.%0A%0A*Name:* ${name}%0A*Style:* ${style}%0A*Placement:* ${placement}%0A*Size:* ${size}%0A*Preferred Date:* ${date}%0A*Concept:* ${desc}%0A%0A(I will send my reference images next!)`;
+            
+            // Redirect to your number
+            const whatsappUrl = `https://wa.me/917972693178?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</body>
+</html> 
