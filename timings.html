@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Timings - PB'S TATTOO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #000000; --surface: #0e0e10; --border: rgba(255, 255, 255, 0.08); --surface-hover: #16161a; --text-primary: #ffffff; --text-secondary: #86868b; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background: var(--bg); color: var(--text-primary); padding-top: 100px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; overflow-x: hidden; }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.1s; } 
+        
+        header { position: fixed; top: 0; width: 100%; z-index: 1000; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); background: rgba(0, 0, 0, 0.75); border-bottom: 1px solid var(--border); }
+        nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; width: 100%; }
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; font-size: 1.05rem; font-weight: 800; letter-spacing: 0.1em; color: #fff; }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: color 0.2s;}
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-btn { background: #fff; color: #000 !important; padding: 8px 18px; border-radius: 98px; }
+
+        .container { max-width: 900px; width: 100%; padding: 40px 24px; margin: 0 auto; }
+        
+        .header-section { text-align: center; margin-bottom: 60px; }
+        .header-section h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 15px; }
+        .header-section p { color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; margin-bottom: 60px; }
+        
+        .bento-card { background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; transition: all 0.3s; }
+        .bento-card:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-3px); }
+        
+        .col-7 { grid-column: span 7; }
+        .col-5 { grid-column: span 5; }
+        .col-12 { grid-column: span 12; }
+
+        .card-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 25px; color: #fff; }
+        
+        /* Schedule List */
+        .schedule-list { display: flex; flex-direction: column; }
+        .day-row { display: flex; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid var(--border); font-size: 1.05rem; }
+        .day-row:last-child { border-bottom: none; padding-bottom: 0; }
+        .day { font-weight: 600; color: #e0e0e0; }
+        .hours { color: var(--text-secondary); }
+        .closed { color: #2997ff; font-weight: 600; } /* Blue for Appointments Only to make it pop */
+
+        /* Info Text */
+        .info-desc { color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px; font-size: 0.95rem; }
+        .info-desc strong { color: #fff; }
+
+        /* CTA Banner */
+        .cta-banner { background: linear-gradient(180deg, #16161a 0%, #0e0e10 100%); border: 1px solid var(--border); border-radius: 24px; padding: 40px; text-align: center; }
+        .cta-banner h2 { font-size: 1.5rem; margin-bottom: 10px; }
+        .cta-banner p { color: var(--text-secondary); margin-bottom: 25px; font-size: 0.95rem; }
+        .btn-primary { background: #ffffff; color: #000000; padding: 14px 28px; border-radius: 98px; font-weight: 700; text-decoration: none; display: inline-block; transition: transform 0.2s; font-size: 0.9rem; }
+        .btn-primary:hover { transform: scale(1.05); }
+
+        @media (max-width: 900px) { 
+            .nav-links { display: none; } 
+            .col-7, .col-5 { grid-column: span 12; }
+            .bento-card { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="PB'S TATTOO Logo" style="height: 35px; width: auto;" onerror="this.style.display='none';">
+                <span>PB'S TATTOO</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="calculator.html">Pricing</a>
+                <a href="aftercare.html">Aftercare</a>
+                <a href="blogs.html">Blogs</a>
+                <a href="timings.html" style="color: #fff;">Timings</a>
+                <a href="contact.html">Contact</a>
+                <a href="booking.html" class="nav-btn">Book Now</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="header-section reveal">
+            <h1>Studio Hours.</h1>
+            <p>Plan your visit. Whether you are dropping in for a consultation or sitting down for a full-day session.</p>
+        </div>
+
+        <div class="bento-grid">
+            
+            <!-- Operating Hours -->
+            <div class="bento-card col-7 reveal">
+                <h2 class="card-title">Weekly Schedule</h2>
+                <div class="schedule-list">
+                    <div class="day-row">
+                        <span class="day">Monday</span>
+                        <span class="hours">11:00 AM – 8:00 PM</span>
+                    </div>
+                    <div class="day-row">
+                        <span class="day">Tuesday</span>
+                        <span class="hours">11:00 AM – 8:00 PM</span>
+                    </div>
+                    <div class="day-row">
+                        <span class="day">Wednesday</span>
+                        <span class="hours">11:00 AM – 8:00 PM</span>
+                    </div>
+                    <div class="day-row">
+                        <span class="day">Thursday</span>
+                        <span class="hours">11:00 AM – 8:00 PM</span>
+                    </div>
+                    <div class="day-row">
+                        <span class="day">Friday</span>
+                        <span class="hours">11:00 AM – 8:00 PM</span>
+                    </div>
+                    <div class="day-row">
+                        <span class="day">Saturday</span>
+                        <span class="closed">Appointments Only</span>
+                    </div>
+                    <div class="day-row">
+                        <span class="day">Sunday</span>
+                        <span class="closed">Appointments Only</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Location & Info -->
+            <div class="bento-card col-5 reveal delay-1" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <h2 class="card-title">Location & Visits</h2>
+                    <p class="info-desc">Drop by our studio in <strong>Madgaon, Goa</strong> to discuss your next piece.</p>
+                    <p class="info-desc"><strong>Walk-ins:</strong> Welcome Monday through Friday for consultations and small flash designs, subject to daily availability.</p>
+                    <p class="info-desc"><strong>Weekends:</strong> Saturday and Sunday are strictly by appointment only to ensure dedicated, uninterrupted time for custom sessions.</p>
+                </div>
+                
+                <div class="cta-banner">
+                    <h2>Ready to start?</h2>
+                    <p>Secure your slot in our schedule.</p>
+                    <a href="booking.html" class="btn-primary">Book Appointment</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }); });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
